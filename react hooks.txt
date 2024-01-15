@@ -1,0 +1,128 @@
+React Hooks are functions that allow you to use state and other React features in functional components, which were traditionally stateless. They enable you to manage stateful logic in functional components, making it easier to reuse code and manage the state and side effects in React applications.
+
+some most of the commonly used ones:-
+state Hook(useState), effect hook(useEffect), context hook(useContext), reducer hook(useReducer), ref hook(useRef), callback hook(useCallback), memo hook(useMemo), imerative handle hook(useImperativeHandle), leyhout effect(useLayouteffect), debug value hook(useDebugValue)
+
+useState:
+-useState is hook thats allows the functional components to manage state
+eg,
+const [count, setCount] = useState(0);
+here, 'count' is initial state variable with initial state value '0'. 'setCount' is the function that can be use to update the 'count' state
+
+------------------------------------------------
+
+useEffect:
+-using useEffect Hook, you tell React that your component needs to do something after render. React will remember the function you passed (we'll refer to it as our “effect”), and call it later after performing the DOM updates.
+systax,
+useEffect(setup, dependencies?)         here 'setup' is a function that contains the code for the side effect you want to perform.
+
+eg,
+import React, { useState, useEffect } from 'react';
+
+function ExampleComponent() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // Fetch data from an API
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://api.example.com/data');
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []); // Empty dependency array, so it runs once when the component mounts
+
+  return (
+    <div>
+      {/* Render your component using the fetched data */}
+      {data.map(item => (
+        <p key={item.id}>{item.name}</p>
+      ))}
+    </div>
+  );
+}
+-----------------------------------------------------------
+
+useMemo:
+-Optimizes performance in React components by avoiding unnecessary re-calculations of expensive values.
+-Achieves this by memoizing (caching) the result of a calculation and only recalculating it when its dependencies change.
+syntax,
+const cachedValue = useMemo(calculateValue, dependencies)
+-------------------------------------------------------------
+
+useCallback:
+-useMemo returns memoized(cached) value. useCalback returns memoized function
+-useCalback use to memoize a callback function by preventing it from being recreated on every render. In simple terms, it means that the callback function is cached and does not get redefined on every render.
+-useMemo is used to memoize values or computations, helping to optimize expensive calculations or data transformations. useCallback is used to memoize callback functions, reducing unnecessary re-creation of functions and optimizing component re-renders.
+-usememo, usecallback both are use to stop running unwanted functions
+-useCallback hook is used to memoize a function, meaning it returns a memoized version of the callback function that only changes if one of the dependencies has changed.
+
+styntax,
+const cachedFn = useCallback(fn, dependencies)
+'fn' is the function that you want to memoize
+'dependencies' is an array of dependencies that, when changed, will trigger the recreation of the memoized function.
+
+so 'cachedFn' is a memoized version of the 'fn' function. If any of the dependencies in the 'dependencies' array change, React will recreate the memoized function. 
+This is useful when you're passing 'cachedFn' as a prop to child components, as it ensures that the function doesn't get recreated unnecessarily, potentially causing unnecessary re-renders of those child components.
+
+eg,
+import React, { useCallback, useState } from 'react';
+
+const ParentComponent = () => {
+  const [count, setCount] = useState(0);
+
+  const handleClick = useCallback(() => {
+    // do something with count
+    console.log(count);
+  }, [count]);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+      <ChildComponent handleClick={handleClick} />
+    </div>
+  );
+};
+
+const ChildComponent = ({ handleClick }) => {
+  // Child component receives the memoized handleClick function
+  return (
+    <div>
+      <p>Child Component</p>
+      <button onClick={handleClick}>Click me</button>
+    </div>
+  );
+};
+
+export default ParentComponent;
+
+
+sare hooks like useEffect, useMemo, useCallback me dependancy hoti hai. agar wo dependacy update hui to wo hook fir se chalega
+----------------------------------------------------------------------
+
+useRef:
+-allows you to manage mutable values and gain access to DOM elements directly.
+syntax,
+const ref = useRef(initialValue)
+
+eg,
+
+
+-----------------------------------------------------------------------------------
+
+useContext:
+React Context is a way to manage state globally. It can be used together with the useState Hook to share state between deeply nested components more easily than with useState alone.
+
+
+learn more types of hooks
+
+custom hooks:
+custom hook is js function whose name starts with 'use'
+-we can use other hooks in custom hook as well
+-custom hooks use to remove the duplicate logic in components  and we can extract that logic to custom hook
