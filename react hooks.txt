@@ -5,6 +5,9 @@ state Hook(useState), effect hook(useEffect), context hook(useContext), reducer 
 
 useState:
 -useState is hook thats allows the functional components to manage state
+syntax,
+const [state, setState] = useState(initialState)
+
 eg,
 const [count, setCount] = useState(0);
 here, 'count' is initial state variable with initial state value '0'. 'setCount' is the function that can be use to update the 'count' state
