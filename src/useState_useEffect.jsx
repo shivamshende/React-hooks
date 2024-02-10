@@ -7,7 +7,7 @@ function App() {
   function addValue() {
     console.log(counter, "value increased!")
     // counter = counter + 1
-    setcounter(counter + 1)   //second word of bracket(setcounter) use to update the value  //'useSate(4)' means 4 is initial value
+    setcounter(counter + 1)   //'setcounter' use to update the value  //'useSate(4)' means 4 is initial value
   }
 
   function removeValue() {
@@ -32,6 +32,3 @@ function App() {
 }
 
 export default App
-
-
-//const [counter, setcounter] = useState(4) means 
