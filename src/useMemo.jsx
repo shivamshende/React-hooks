@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 
-//sometimes the any logic or the function also impact on another function. means if there is a slowness of any function, that slowness also imapct on another function. to prevent this things you can use useMemo
+//sometimes the any logic or the function also impact on another function. means if there is a slowness of any function, that slowness also impact on another function. to prevent this things you can use useMemo
 //and useMemo itself also do the value you computing/calculating that retain(copy) in cache so you can use that value from cache if user do another time same request
 
 export default function Memo() {
