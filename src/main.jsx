@@ -8,6 +8,7 @@ import Implement_hook from '../custom hook/Implement_hook'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <p style={{color: 'orange'}}>Open console for better uderstandings</p>
     <App />
     <Memo />
     <Callback />
